@@ -1,0 +1,82 @@
+.main {
+  margin: 20px auto;
+  max-width: 1400px;
+  padding: 0 20px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+
+  .about {
+    text-align: left;
+  }
+}
+
+.userCard {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 600px;
+    height: 600px;
+    margin-right: 30px;
+  }
+
+  p {
+    font-size: 22px;
+  }
+
+  .bio {
+    font-size: 18px;
+  }
+}
+
+.back {
+  text-align: center;
+  padding: 30px 0 0;
+
+  a {
+    display: inline-block;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+}
+
+.pagination {
+  max-width: 60vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.loader {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+}
