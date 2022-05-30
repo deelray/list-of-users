@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path={ROUTE_MAIN} element={<Main />} />
-        <Route exact path={`${ROUTE_MAIN}/:username`} element={<UserDetails />} />
+        <Route exact path="/:username" element={<UserDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
