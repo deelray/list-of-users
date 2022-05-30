@@ -52,7 +52,6 @@ const UsersModel = types
     get paginatedUsersList() {
       const { users, userNumber } = usersModel;
       const userStartNumber = userNumber * PER_PAGE;
-
       return users.slice(userStartNumber, userStartNumber + PER_PAGE);
     }
   }));
