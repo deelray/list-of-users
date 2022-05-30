@@ -1,51 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import cn from 'classnames';
+import React from 'react';
 import { useStore } from '../models/RootContext';
 import { PER_PAGE, TOTAL_USERS } from '../constants';
+import { observer } from 'mobx-react';
 
 const Pagination = () => {
-  const [pages, setPages] = useState([]);
-  const [page, setPage] = useState(0);
   const {
-    usersData: { setPageNumber }
+    usersData: { setUserNumber, userNumber }
   } = useStore();
-  const numberOfPages = Math.ceil(TOTAL_USERS / PER_PAGE);
-
-  const createPages = Array.from({ length: numberOfPages }, (_, index) => index + 1);
+  const pagesQuantity = Math.ceil(TOTAL_USERS / PER_PAGE);
+  const pages = Array.from({ length: pagesQuantity }, (_, index) => index + 1);
 
   const handleChangePage = (index) => {
-    setPage(index);
+    setUserNumber(index);
   };
 
   const handleNextPage = () => {
-    setPage((prev) => prev + 1);
+    setUserNumber(userNumber + 1);
   };
 
   const handlePrevPage = () => {
-    setPage((prev) => prev - 1);
+    setUserNumber(userNumber - 1);
   };
-
-  useEffect(() => {
-    setPages(createPages);
-  }, []);
-
-  useEffect(() => {
-    setPageNumber(page * PER_PAGE);
-  }, [page]);
 
   return (
     <div className="pagination">
-      <button type="button" className="btn btn-light" onClick={handlePrevPage} disabled={page <= 0}>
+      <button
+        type="button"
+        className="btn btn-light"
+        onClick={handlePrevPage}
+        disabled={userNumber <= 0}>
         &#60;
       </button>
-      {pages.map((item, index) => {
+      {pages.map((page, index) => {
         return (
           <button
             type="button"
-            key={index}
-            className={cn('btn', `${index === page ? 'btn-info' : 'btn-light'}`)}
+            key={page}
+            className={`btn ${index === userNumber ? 'btn-info' : 'btn-light'}`}
             onClick={() => handleChangePage(index)}>
-            {item}
+            {page}
           </button>
         );
       })}
@@ -53,11 +46,11 @@ const Pagination = () => {
         type="button"
         className="btn btn-light"
         onClick={handleNextPage}
-        disabled={page >= numberOfPages - 1}>
+        disabled={userNumber >= pagesQuantity - 1}>
         &#62;
       </button>
     </div>
   );
 };
 
-export default Pagination;
+export default observer(Pagination);

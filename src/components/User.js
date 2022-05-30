@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { ROUTE_USER } from '../constants';
 
 const User = ({ login, avatar_url, html_url }) => {
-  const history = useHistory();
-
-  const handleLinkClick = () => {
-    history.push(`/users/${login}`);
-  };
-
   return (
-    <button type="button" className="btn btn-light row" onClick={handleLinkClick}>
+    <Link to={`${ROUTE_USER}/${login}`} className="btn btn-light row">
       <img src={avatar_url} className="card-img-top" alt={avatar_url} />
       <div className="about">
         <h4>Login: {login}</h4>
@@ -22,7 +17,7 @@ const User = ({ login, avatar_url, html_url }) => {
           Link on GitHub Profile
         </a>
       </div>
-    </button>
+    </Link>
   );
 };
 

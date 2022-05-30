@@ -2,21 +2,18 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { useStore } from '../models/RootContext';
 import User from './User';
-import Loader from './Loader';
 
 const UsersList = () => {
   const {
-    usersData: { users, isLoading }
+    usersData: { paginatedUsersList }
   } = useStore();
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  window.scrollTo(0, 0);
 
   return (
     <section>
-      {users?.map((user) => (
-        <User {...user} key={user.id} />
+      {paginatedUsersList?.map(({ id, login, avatar_url, html_url }) => (
+        <User key={id} login={login} avatar_url={avatar_url} html_url={html_url} />
       ))}
     </section>
   );

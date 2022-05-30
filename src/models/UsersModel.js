@@ -1,12 +1,12 @@
 import { flow, types } from 'mobx-state-tree';
 import { SingleUserModel, UserModel } from './UserModel';
 import axios from 'axios';
-import { PER_PAGE } from '../constants';
+import { BASE_URL, PER_PAGE, TOTAL_USERS } from '../constants';
 
 const UsersModel = types
   .model('UsersModel', {
     isLoading: types.optional(types.boolean, false),
-    pageNumber: types.optional(types.number, 0),
+    userNumber: types.optional(types.number, 0),
     users: types.array(UserModel),
     user: types.optional(SingleUserModel, {})
   })
@@ -14,8 +14,8 @@ const UsersModel = types
     setIsLoading(loading) {
       usersModel.isLoading = loading;
     },
-    setPageNumber(number) {
-      usersModel.pageNumber = number;
+    setUserNumber(number) {
+      usersModel.userNumber = number;
     },
     setUsers(users) {
       usersModel.users = users;
@@ -24,12 +24,10 @@ const UsersModel = types
       usersModel.user = user;
     },
     getUsers: flow(function* getUsers() {
-      const { setUsers, setIsLoading, pageNumber } = usersModel;
+      const { setIsLoading, setUsers } = usersModel;
       setIsLoading(true);
       try {
-        const { data } = yield axios.get(
-          `https://api.github.com/users?since=${pageNumber}&per_page=${PER_PAGE}`
-        );
+        const { data } = yield axios.get(`${BASE_URL}?since=0&per_page=${TOTAL_USERS}`);
         setUsers(data);
       } catch (err) {
         throw new Error(err.message);
@@ -41,7 +39,7 @@ const UsersModel = types
       const { setUser, setIsLoading } = usersModel;
       setIsLoading(true);
       try {
-        const { data } = yield axios.get(`https://api.github.com/users/${username}`);
+        const { data } = yield axios.get(`${BASE_URL}/${username}`);
         setUser(data);
       } catch (err) {
         throw new Error(err.message);
@@ -49,6 +47,14 @@ const UsersModel = types
         setIsLoading(false);
       }
     })
+  }))
+  .views((usersModel) => ({
+    get paginatedUsersList() {
+      const { users, userNumber } = usersModel;
+      const userStartNumber = userNumber * PER_PAGE;
+
+      return users.slice(userStartNumber, userStartNumber + PER_PAGE);
+    }
   }));
 
 export default UsersModel;

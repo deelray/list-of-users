@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useStore } from '../models/RootContext';
 import Loader from '../components/Loader';
+import { linkFormatter } from '../utils';
+import BackHomeButton from '../components/BackHomeButton';
 
 const UserDetails = () => {
   const { username } = useParams();
@@ -31,15 +33,10 @@ const UserDetails = () => {
   }
 
   const date = new Date(created_at);
-  const linkWithHttp = blog.slice(0, 5) === 'https' || blog.slice(0, 4) === 'http';
 
   return (
     <>
-      <p className="back">
-        <Link to="/" className="link">
-          Back Home
-        </Link>
-      </p>
+      <BackHomeButton />
       <div className="userCard">
         <img src={avatar_url} className="card-img-top" alt="avatar" />
         <div>
@@ -54,7 +51,7 @@ const UserDetails = () => {
           <p>
             User blog:{' '}
             {blog ? (
-              <a href={linkWithHttp ? blog : `https://${blog}`} target="_blank" rel="noreferrer">
+              <a href={linkFormatter(blog)} target="_blank" rel="noreferrer">
                 Link
               </a>
             ) : (

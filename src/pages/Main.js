@@ -6,13 +6,14 @@ import Pagination from '../components/Pagination';
 
 const Main = () => {
   const {
-    usersData: { getUsers, pageNumber, users }
+    usersData: { getUsers, users }
   } = useStore();
 
   useEffect(() => {
     getUsers();
-    window.scrollTo(0, 0);
-  }, [pageNumber]);
+  }, []);
+
+  console.log(users.map((i) => i.toJSON()));
 
   return (
     <main className="main">

@@ -1,2 +1,7 @@
-export const TOTAL_USERS = 500;
-export const PER_PAGE = 50;
+export const ROUTE_MAIN = '/';
+export const ROUTE_USER = '/users';
+
+export const BASE_URL = `https://api.github.com/users`;
+
+export const TOTAL_USERS = 100;
+export const PER_PAGE = 10;
