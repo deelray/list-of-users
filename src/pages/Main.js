@@ -13,8 +13,6 @@ const Main = () => {
     getUsers();
   }, []);
 
-  console.log(users.map((i) => i.toJSON()));
-
   return (
     <main className="main">
       <h1>List of GitHub users</h1>
