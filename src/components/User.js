@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { ROUTE_USER } from '../constants';
 
 const User = ({ login, avatar_url, html_url }) => {
   return (
-    <Link to={`/${login}`} className="btn btn-light row">
+    <Link to={`${ROUTE_USER}/${login}`} className="btn btn-light row">
       <img src={avatar_url} className="card-img-top" alt={avatar_url} />
       <div className="about">
         <h4>Login: {login}</h4>

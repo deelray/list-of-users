@@ -1,4 +1,5 @@
 export const ROUTE_MAIN = '/';
+export const ROUTE_USER = '/users';
 
 export const BASE_URL = `https://api.github.com/users`;
 
