@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/list-of-users/static/css/main.dfdbf669.css",
+    "main.js": "/list-of-users/static/js/main.aade43d7.js",
+    "index.html": "/list-of-users/index.html",
+    "main.dfdbf669.css.map": "/list-of-users/static/css/main.dfdbf669.css.map",
+    "main.aade43d7.js.map": "/list-of-users/static/js/main.aade43d7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dfdbf669.css",
+    "static/js/main.aade43d7.js"
+  ]
+}
