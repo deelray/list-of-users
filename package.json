@@ -1,6 +1,6 @@
 {
   "name": "list-of-users",
-  "homepage": "https://deelray.github.io/list-of-users/",
+  "homepage": "https://deelray.github.io/list-of-users",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
